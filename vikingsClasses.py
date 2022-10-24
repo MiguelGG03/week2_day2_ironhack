@@ -67,14 +67,14 @@ class War:
     def addSaxon(self,saxon:Saxon):
         self.saxonArmy.append(saxon)
     
-    def vikingAttak(self):
+    def vikingAttack(self):
         r=Saxon.receiveDamage(Viking.strength)
         if(Saxon.health>0):
             return  f'{r}'
         else:
             self.saxonArmy.remove(Saxon)
 
-    def saxonAttak(self):
+    def saxonAttack(self):
         s=Viking.receiveDamage(Saxon.strength)
         if(Viking.health>0):
             return  f'{s}'
