@@ -63,11 +63,11 @@ class War:
         self.vikingArmy = []
         self.saxonArmy = []
     
-    def addViking(self, viking):
+    def addViking(self, viking:Viking):
         self.vikingArmy.append(viking)
         return None
 
-    def addSaxon(self, saxon):
+    def addSaxon(self, saxon:Saxon):
         self.saxonArmy.append(saxon)
         return None
     
