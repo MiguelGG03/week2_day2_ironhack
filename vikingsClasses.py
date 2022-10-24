@@ -54,39 +54,47 @@ class Saxon(Soldier):
         else:
             return f'A Saxon has died in combat'
 
+from random import choice
+
 # War
 
 class War:
     def __init__(self):
-        self.vikingArmy=[]
-        self.saxonArmy=[]
-
-    def addViking(self,viking:Viking):
-        self.vikingArmy.append(viking)
+        self.vikingArmy = []
+        self.saxonArmy = []
     
-    def addSaxon(self,saxon:Saxon):
+    def addViking(self, viking):
+        self.vikingArmy.append(viking)
+        return None
+
+    def addSaxon(self, saxon):
         self.saxonArmy.append(saxon)
+        return None
     
     def vikingAttack(self):
-        r=Saxon.receiveDamage(Viking.strength)
-        if(Saxon.health>0):
-            return  f'{r}'
+        saxon = choice(self.saxonArmy)
+        viking = choice(self.vikingArmy)
+        ataque = saxon.receiveDamage(viking.strength)
+        if saxon.health <= 0:
+            self.saxonArmy.remove(saxon)
         else:
-            self.saxonArmy.remove(Saxon)
+            pass
+        return ataque
 
     def saxonAttack(self):
-        s=Viking.receiveDamage(Saxon.strength)
-        if(Viking.health>0):
-            return  f'{s}'
+        viking = choice(self.vikingArmy)
+        saxon = choice(self.saxonArmy)
+        ataque = viking.receiveDamage(saxon.strength)
+        if viking.health <= 0:
+            self.vikingArmy.remove(viking)
         else:
-            self.vikingArmy.remove(Viking)
-
+            pass
+        return ataque
+    
     def showStatus(self):
-        if(len(self.vikingArmy)==0):
-            return "Saxons have fought for their lives and survive another day..."
-        
-        elif(len(self.saxonArmy)==0):
-            return f'Vikings have won the war of the century!'
-
+        if self.saxonArmy == []:
+            return "Vikings have won the war of the century!"  
+        elif self.vikingArmy == []:
+            return "Saxons have fought for their lives and survive another day..."    
         else:
             return "Vikings and Saxons are still in the thick of battle."
